@@ -112,7 +112,7 @@ export default {
   height: 5.625rem  ;
 }
 .cell_place {
-  color: #5e5e5e;
+  color: #999;
   font-size: 12px;
   padding: 1rem 0;
 }
@@ -133,15 +133,14 @@ export default {
   height: 5.625rem;
   width: 6.25rem;   
 }
-.cell_content .address{
+.cell .address{
     font-size: 16px;
 }
-.cell_content .price{
+.cell .price{
     font-size: 14px;
     padding-right: 0.625rem;
-    color:#FF0000;
 }
-.cell_content  .room{
+.cell .room{
     font-size: 14px;
 }
 </style>  

@@ -14,13 +14,13 @@
   </div>
   <div class="cell_content">
     <div>
-      <span class="address">{{item.address}}</span>
+      <span>{{item.address}}</span>
     </div>
     <div class="cell_place">
-      <span>{{item.block_name}} | {{item.community}}</span>
+      <span>金桥 | 东二小区东二小区东二小区</span>
     </div>
     <div>
-       <span class="price">{{item.price}}万</span><span class="room">{{item.room}} | {{item.area}}平米</span>
+       <span>299万</span><span>2室1厅 | 66平米</span>
           <div class="aixin" v-on:click="update(item)" :class="{'active':item.active }">
          </div>
     </div>
@@ -62,10 +62,9 @@ export default {
         })
         .then((response)=> {
           console.log(response.data.result.rows);
-          var data = response.data.result.rows;
-          var length = data.length;
-            for(let i = 0;i < length;i++){
-                this.list.push(data[i])
+          var aa = response.data.result.rows;
+            for(let i = 0;i < 10;i++){
+                this.list.push(aa[i])
             }
             console.log(this.list)
         })
@@ -95,33 +94,33 @@ export default {
   line-height: 3rem;
 }
 .list {
-  border-top: 1px solid #e6e6e6;
-  height: 8.16rem;
-  box-sizing: border-box;
-  padding: 1.25rem;
+  border-top: 1px solid #999;
+  height: 7rem;
 }
 .list .cell {
-  width:6.25rem;
-  height: 5.625rem;
+  height: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
   display: inline-block;
+  width: 30%;
   vertical-align: top;
 }
 .cell_content {
   display: inline-block;
+  width: 65%;
+  padding: 1rem;
   box-sizing: border-box;
-  height: 5.625rem  ;
 }
 .cell_place {
-  color: #5e5e5e;
+  color: #999;
   font-size: 12px;
-  padding: 1rem 0;
 }
 .aixin {
   position: absolute;
-  right: 1.44rem;
-  bottom: 1.01rem;
-  width: 1.06rem;
-  height: 1.06rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  width: 2rem;
+  height: 2rem;
   background: url(../assets/aixin.png) no-repeat 0 0;
   background-size: 100%;
 }
@@ -130,18 +129,7 @@ export default {
   background-size: 100%;
 }
 .cell img {
-  height: 5.625rem;
-  width: 6.25rem;   
-}
-.cell_content .address{
-    font-size: 16px;
-}
-.cell_content .price{
-    font-size: 14px;
-    padding-right: 0.625rem;
-    color:#FF0000;
-}
-.cell_content  .room{
-    font-size: 14px;
+  height: 5rem;
+  width: 5rem;
 }
 </style>  

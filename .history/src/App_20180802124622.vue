@@ -14,13 +14,13 @@
   </div>
   <div class="cell_content">
     <div>
-      <span class="address">{{item.address}}</span>
+      <span>{{item.address}}</span>
     </div>
     <div class="cell_place">
       <span>{{item.block_name}} | {{item.community}}</span>
     </div>
     <div>
-       <span class="price">{{item.price}}万</span><span class="room">{{item.room}} | {{item.area}}平米</span>
+       <span>{{item.price}}万</span><span>{{item.room}} | {{item.area}}平米</span>
           <div class="aixin" v-on:click="update(item)" :class="{'active':item.active }">
          </div>
     </div>
@@ -95,33 +95,33 @@ export default {
   line-height: 3rem;
 }
 .list {
-  border-top: 1px solid #e6e6e6;
+  border-top: 1px solid #999;
   height: 8.16rem;
-  box-sizing: border-box;
-  padding: 1.25rem;
 }
 .list .cell {
-  width:6.25rem;
-  height: 5.625rem;
+  height: 100%;
+  padding: 1.25rem;
+  box-sizing: border-box;
   display: inline-block;
+  width: 30%;
   vertical-align: top;
 }
 .cell_content {
   display: inline-block;
+  width: 65%;
+  padding: 1rem;
   box-sizing: border-box;
-  height: 5.625rem  ;
 }
 .cell_place {
-  color: #5e5e5e;
+  color: #999;
   font-size: 12px;
-  padding: 1rem 0;
 }
 .aixin {
   position: absolute;
-  right: 1.44rem;
-  bottom: 1.01rem;
-  width: 1.06rem;
-  height: 1.06rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  width: 2rem;
+  height: 2rem;
   background: url(../assets/aixin.png) no-repeat 0 0;
   background-size: 100%;
 }
@@ -131,17 +131,6 @@ export default {
 }
 .cell img {
   height: 5.625rem;
-  width: 6.25rem;   
-}
-.cell_content .address{
-    font-size: 16px;
-}
-.cell_content .price{
-    font-size: 14px;
-    padding-right: 0.625rem;
-    color:#FF0000;
-}
-.cell_content  .room{
-    font-size: 14px;
+  width: 6.25rem;
 }
 </style>  

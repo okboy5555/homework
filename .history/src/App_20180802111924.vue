@@ -14,13 +14,13 @@
   </div>
   <div class="cell_content">
     <div>
-      <span class="address">{{item.address}}</span>
+      <span>低于市场价真实可靠正常过户靠近地铁精装房源</span>
     </div>
     <div class="cell_place">
-      <span>{{item.block_name}} | {{item.community}}</span>
+      <span>金桥 | 东二小区东二小区东二小区</span>
     </div>
     <div>
-       <span class="price">{{item.price}}万</span><span class="room">{{item.room}} | {{item.area}}平米</span>
+       <span>299万</span><span>2室1厅 | 66平米</span>
           <div class="aixin" v-on:click="update(item)" :class="{'active':item.active }">
          </div>
     </div>
@@ -54,23 +54,16 @@ export default {
       //       this.finished = true;
       //     }
       //   }, 500);
-      axios
-        .get("/apis/housework/collectList/",{
-            params:{
-                user_id:10
-            }
+      this.$ajax({
+        url: "/api/articles", //api 代理到json文件地址，后面的后缀是文件中的对象或者是数组
+        method: "get" //请求方式
+        //这里可以添加axios文档中的各种配置
+      })
+        .then(function(res) {
+          console.log(res, "成功");
         })
-        .then((response)=> {
-          console.log(response.data.result.rows);
-          var data = response.data.result.rows;
-          var length = data.length;
-            for(let i = 0;i < length;i++){
-                this.list.push(data[i])
-            }
-            console.log(this.list)
-        })
-        .catch(function(error) {
-          console.log(error);
+        .catch(function(err) {
+          console.log(err, "错误");
         });
     },
     update: function(item) {
@@ -95,33 +88,33 @@ export default {
   line-height: 3rem;
 }
 .list {
-  border-top: 1px solid #e6e6e6;
-  height: 8.16rem;
-  box-sizing: border-box;
-  padding: 1.25rem;
+  border-top: 1px solid #999;
+  height: 7rem;
 }
 .list .cell {
-  width:6.25rem;
-  height: 5.625rem;
+  height: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
   display: inline-block;
+  width: 30%;
   vertical-align: top;
 }
 .cell_content {
   display: inline-block;
+  width: 65%;
+  padding: 1rem;
   box-sizing: border-box;
-  height: 5.625rem  ;
 }
 .cell_place {
-  color: #5e5e5e;
+  color: #999;
   font-size: 12px;
-  padding: 1rem 0;
 }
 .aixin {
   position: absolute;
-  right: 1.44rem;
-  bottom: 1.01rem;
-  width: 1.06rem;
-  height: 1.06rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  width: 2rem;
+  height: 2rem;
   background: url(../assets/aixin.png) no-repeat 0 0;
   background-size: 100%;
 }
@@ -130,18 +123,7 @@ export default {
   background-size: 100%;
 }
 .cell img {
-  height: 5.625rem;
-  width: 6.25rem;   
-}
-.cell_content .address{
-    font-size: 16px;
-}
-.cell_content .price{
-    font-size: 14px;
-    padding-right: 0.625rem;
-    color:#FF0000;
-}
-.cell_content  .room{
-    font-size: 14px;
+  height: 5rem;
+  width: 5rem;
 }
 </style>  

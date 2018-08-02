@@ -139,7 +139,6 @@ export default {
 .cell_content .price{
     font-size: 14px;
     padding-right: 0.625rem;
-    color:#FF0000;
 }
 .cell_content  .room{
     font-size: 14px;

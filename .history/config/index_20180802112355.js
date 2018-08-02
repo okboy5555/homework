@@ -27,15 +27,7 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {
-      '/apis': {
-        target: 'http://api.jinxing.kfs.dev.anjuke.test', // 接口域名
-        changeOrigin: true, //是否跨域
-        pathRewrite: {
-          '^/apis': '' //需要rewrite的,
-        }
-      }
-    },
+    proxyTable: {},
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)
