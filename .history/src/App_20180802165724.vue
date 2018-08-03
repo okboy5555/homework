@@ -18,7 +18,7 @@
 >
 <div v-for="(item) in list" :key="item.id" :title="item + ''" class="list van-hairline--top-bottom"  >
   <div class="cell">
-      <img :src='item.image' alt="" >
+      <img src="http://img.zcool.cn/community/0117e2571b8b246ac72538120dd8a4.jpg@1280w_1l_2o_100sh.jpg" alt="" >
   </div>
   <div class="cell_content">
     <div>
@@ -94,7 +94,6 @@ export default {
       //       this.finished = true;
       //     }
       //   }, 500);
-
       axios
         .get("/apis/housework/collectList/", {
           params: {
@@ -102,13 +101,13 @@ export default {
           }
         })
         .then(response => {
-          //console.log(response.data.result.rows);
+          console.log(response.data.result.rows);
           var data = response.data.result.rows;
           var length = data.length;
           for (let i = 0; i < length; i++) {
             this.list.push(data[i]);
           }
-          //console.log(this.list);
+          console.log(this.list);
         })
         .catch(function(error) {
           console.log(error);
@@ -134,7 +133,7 @@ export default {
         .catch(function(error) {
           console.log(error);
         });
-      item.type = aixin_type;
+      item.type = 0;
     },
     paixu: function(paixu_type) {
         if(paixu_type == 1){
@@ -211,7 +210,6 @@ export default {
   display: inline-block;
   box-sizing: border-box;
   height: 5.625rem;
-  margin-left:1rem; 
 }
 .cell_place {
   color: #5e5e5e;

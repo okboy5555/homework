@@ -1,13 +1,37 @@
 <template>
 
-<div>
-    <div class="bdsharebuttonbox" >
-            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-            <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
-    </div>
+  <div>
+
+
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="header">
         收藏房源
-        <div class="icon" v-on:click="paixu(paixu_type)">
+        <div class="icon" v-on:click="paixu()">
             <img src="../assets/排序.png" alt="">
         </div>
     </div>
@@ -18,7 +42,7 @@
 >
 <div v-for="(item) in list" :key="item.id" :title="item + ''" class="list van-hairline--top-bottom"  >
   <div class="cell">
-      <img :src='item.image' alt="" >
+      <img src="http://img.zcool.cn/community/0117e2571b8b246ac72538120dd8a4.jpg@1280w_1l_2o_100sh.jpg" alt="" >
   </div>
   <div class="cell_content">
     <div>
@@ -29,7 +53,7 @@
     </div>
     <div>
        <span class="price">{{item.price}}万</span><span class="room">{{item.room}} | {{item.area}}平米</span>
-          <div class="aixin" v-on:click="update(item,aixin_type)" :class="{'active':item.type }">
+          <div class="aixin" v-on:click="update(item)" :class="{'active':item.type }">
          </div>
     </div>
   </div>
@@ -45,44 +69,11 @@ export default {
     return {
       list: [],
       loading: false,
-      finished: false,
-      paixu_type:1,
-      aixin_type:1
+      finished: false
     };
   },
-  created() {
-    this.setup();
-  },
-  methods: {
-    setup() {
-      window._bd_share_config = {
-        common: {
-          bdSnsKey: {},
-          bdText: "",
-          bdMini: "2",
-          bdPic: "",
-          bdStyle: "0",
-          bdSize: "16"
-        },
-        share: {},
-        image: {
-          viewList: ["qzone", "tsina", "tqq", "renren", "weixin"],
-          viewText: "分享到：",
-          viewSize: "16"
-        },
-        selectShare: {
-          bdContainerClass: null,
-          bdSelectMiniList: ["qzone", "tsina", "tqq", "renren", "weixin"]
-        }
-      };
-      const s = document.createElement("script");
-      s.type = "text/javascript";
-      s.src =
-        "http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=" +
-        ~(-new Date() / 36e5);
-      document.body.appendChild(s);
-    },
 
+  methods: {
     onLoad() {
       //   setTimeout(() => {
       //     for (let i = 0; i < 10; i++) {
@@ -94,7 +85,6 @@ export default {
       //       this.finished = true;
       //     }
       //   }, 500);
-
       axios
         .get("/apis/housework/collectList/", {
           params: {
@@ -102,26 +92,19 @@ export default {
           }
         })
         .then(response => {
-          //console.log(response.data.result.rows);
+          console.log(response.data.result.rows);
           var data = response.data.result.rows;
           var length = data.length;
           for (let i = 0; i < length; i++) {
             this.list.push(data[i]);
           }
-          //console.log(this.list);
+          console.log(this.list);
         })
         .catch(function(error) {
           console.log(error);
         });
     },
-    update: function(item,aixin_type) {
-        
-        if(aixin_type == 1){
-            this.aixin_type = 0
-        }else{
-            this.aixin_type = 1
-        }
-        console.log(aixin_type)
+    update: function(item) {
       axios
         .get("/apis/housework/collect/", {
           params: {
@@ -134,19 +117,14 @@ export default {
         .catch(function(error) {
           console.log(error);
         });
-      item.type = aixin_type;
+      item.type = 0;
     },
-    paixu: function(paixu_type) {
-        if(paixu_type == 1){
-            this.paixu_type = 0;
-        }else{
-            this.paixu_type = 1;
-        }
+    paixu: function() {
       axios
         .get("/apis/housework/collectList/", {
           params: {
             user_id: 10,
-            price_order: paixu_type //升序
+            price_order: 0 //升序
           }
         })
         .then(response => {
@@ -165,12 +143,8 @@ export default {
   }
 };
 </script>
-
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 <style>
-.bdsharebuttonbox {
-    position: absolute;
-    left:1rem;
-}
 .header {
   text-align: center;
   margin: auto;
@@ -211,7 +185,6 @@ export default {
   display: inline-block;
   box-sizing: border-box;
   height: 5.625rem;
-  margin-left:1rem; 
 }
 .cell_place {
   color: #5e5e5e;

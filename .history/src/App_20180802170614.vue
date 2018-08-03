@@ -94,7 +94,6 @@ export default {
       //       this.finished = true;
       //     }
       //   }, 500);
-
       axios
         .get("/apis/housework/collectList/", {
           params: {
@@ -102,13 +101,13 @@ export default {
           }
         })
         .then(response => {
-          //console.log(response.data.result.rows);
+          console.log(response.data.result.rows);
           var data = response.data.result.rows;
           var length = data.length;
           for (let i = 0; i < length; i++) {
             this.list.push(data[i]);
           }
-          //console.log(this.list);
+          console.log(this.list);
         })
         .catch(function(error) {
           console.log(error);
